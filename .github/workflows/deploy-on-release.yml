@@ -101,6 +101,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ matrix.jar }}      # from the matrix entry
-          asset_name: ${{ matrix.jar }}      # or strip off 'target/' if desired
+          asset_path: ${{ matrix.jar }}
+          asset_name: ${{ replace(matrix.jar, 'target/', '') }}
           asset_content_type: application/octet-stream
