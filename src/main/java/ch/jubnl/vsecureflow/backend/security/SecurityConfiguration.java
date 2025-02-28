@@ -1,6 +1,5 @@
 package ch.jubnl.vsecureflow.backend.security;
 
-import ch.jubnl.vsecureflow.frontend.views.TaskView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +29,7 @@ public class SecurityConfiguration extends VaadinWebSecurity {
                 .requestMatchers(new AntPathRequestMatcher("/line-awesome/**/*.svg")).permitAll());
 
         super.configure(http);
-        setLoginView(http, TaskView.class);
+        // setLoginView(http, TaskView.class);
     }
 
 }

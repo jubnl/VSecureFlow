@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @ToString
 public abstract class BaseDto {
     private Long id;
+    private boolean deleted;
     @PositiveOrZero
     private int version;
     private LocalDateTime createdAt;

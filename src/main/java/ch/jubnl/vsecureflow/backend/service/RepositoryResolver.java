@@ -19,7 +19,7 @@ public class RepositoryResolver {
     @SuppressWarnings("unchecked")
     public <T extends BaseEntity, ID> BaseRepository<T, ID> getRepository(Class<T> domainClass) {
         return (BaseRepository<T, ID>) repositories.getRepositoryFor(domainClass)
-                .filter(repo -> repo instanceof BaseRepository<?,?>)
+                .filter(repo -> repo instanceof BaseRepository<?, ?>)
                 .orElseThrow(() -> new IllegalArgumentException("No JPA repository found for " + domainClass));
     }
 }

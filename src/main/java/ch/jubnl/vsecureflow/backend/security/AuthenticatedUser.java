@@ -1,7 +1,7 @@
 package ch.jubnl.vsecureflow.backend.security;
 
-import ch.jubnl.vsecureflow.backend.dto.UserDto;
-import ch.jubnl.vsecureflow.backend.service.UserService;
+import ch.jubnl.vsecureflow.backend.dto.SecurityUserDto;
+import ch.jubnl.vsecureflow.backend.service.SecurityUserService;
 import com.vaadin.flow.spring.security.AuthenticationContext;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -12,18 +12,18 @@ import java.util.Optional;
 @Component
 public class AuthenticatedUser {
 
-    private final UserService userService;
+    private final SecurityUserService securityUserService;
     private final AuthenticationContext authenticationContext;
 
-    public AuthenticatedUser(AuthenticationContext authenticationContext, UserService userService) {
-        this.userService = userService;
+    public AuthenticatedUser(AuthenticationContext authenticationContext, SecurityUserService securityUserService) {
+        this.securityUserService = securityUserService;
         this.authenticationContext = authenticationContext;
     }
 
     @Transactional
-    public Optional<UserDto> get() {
+    public Optional<SecurityUserDto> get() {
         return authenticationContext.getAuthenticatedUser(UserDetails.class)
-                .flatMap(userDetails -> userService.findByEmail(userDetails.getUsername()));
+                .flatMap(userDetails -> securityUserService.findByEmail(userDetails.getUsername()));
     }
 
     public void logout() {

@@ -1,6 +1,7 @@
 package ch.jubnl.vsecureflow.backend.entity;
 
 import ch.jubnl.vsecureflow.backend.annotation.Auditable;
+import ch.jubnl.vsecureflow.backend.annotation.Secured;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,12 +17,15 @@ import java.time.LocalDateTime;
 @Auditable
 @Getter
 @Setter
+@Secured
 public abstract class BaseEntity implements Serializable, Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Long id;
+
+    private boolean deleted = false;
 
     @Version
     @Auditable(exclude = true)

@@ -11,20 +11,28 @@
 	<groupId>ch.jubnl</groupId>
 	<artifactId>vsecureflow</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>VSecureFlow</name>
 	<description>A Vaadin based framework made security first in mind</description>
-	<url/>
+	<url>https://github.com/jubnl/VSecureFlow</url>
 	<licenses>
-		<license/>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
 	</licenses>
 	<developers>
-		<developer/>
+		<developer>
+			<email>jgunther021@gmail.com</email>
+			<name>Julien Gunther</name>
+			<roles>
+				<role>Lead developer</role>
+			</roles>
+		</developer>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<url>https://github.com/jubnl/VSecureFlow</url>
 	</scm>
 	<properties>
 		<java.version>21</java.version>
@@ -56,12 +64,6 @@
 			<groupId>org.parttio</groupId>
 			<artifactId>line-awesome</artifactId>
 			<version>2.1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -113,6 +115,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 			<plugin>
