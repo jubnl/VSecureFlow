@@ -1,0 +1,9 @@
+<settings>
+    <servers>
+        <server>
+            <id>central</id>
+            <username>${MVN_CENTRAL_USR}</username>
+            <password>${MVN_CENTRAL_PWD}</password>
+        </server>
+    </servers>
+</settings>

@@ -242,5 +242,6 @@ vaadin-dev-server/src/main/resources/META-INF/metadata
 /flow-tests/**/frontend/routes.tsx
 flow-tests/**/src/main/bundles/*
 src/main/frontend/generated
+local.settings.xml
 
 # End of Specific to this project
