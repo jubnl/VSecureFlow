@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ch.jubnl</groupId>
 	<artifactId>vsecureflow</artifactId>
-	<version>0.0.11-SNAPSHOT</version>
+	<version>0.0.12-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>VSecureFlow</name>
 	<description>A Vaadin based framework made security first in mind</description>
