@@ -95,6 +95,12 @@ jobs:
           name: built-jars
           path: target
 
+      - name: Determine asset name
+        id: basename
+        run: |
+          filename=$(basename "${{ matrix.jar }}")
+          echo "asset_name=$filename" >> $GITHUB_OUTPUT
+
       - name: Upload JAR to GitHub Release
         uses: actions/upload-release-asset@v1
         env:
@@ -102,5 +108,5 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ matrix.jar }}
-          asset_name: ${{ replace(matrix.jar, 'target/', '') }}
+          asset_name: ${{ steps.basename.outputs.asset_name }}
           asset_content_type: application/octet-stream
