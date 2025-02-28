@@ -1,0 +1,2 @@
+INSERT INTO app_user (version, created_at, created_by, updated_at, updated_by, first_name, last_name, email, password,profile_picture)VALUES (1, NOW(), 'system@example.com', NOW(), 'system@example.com', 'A', 'B', 'system@example.com', 'a', null);
+INSERT INTO app_user (version, created_at, created_by, updated_at, updated_by, first_name, last_name, email, password,profile_picture)VALUES (1, NOW(), 'system@example.com', NOW(), 'system2@example.com', 'A', 'B', 'system2@example.com', 'a', null)
