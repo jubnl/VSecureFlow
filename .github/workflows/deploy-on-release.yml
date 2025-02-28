@@ -68,7 +68,7 @@ jobs:
         id: collect_jars
         run: |
           # Turn all target/*.jar paths into a JSON array for the matrix
-          jar_array=$(ls target/*.jar | jq -R . | jq -s .)
+          jar_array=$(ls target/*.jar | jq -R . | jq -s -c .)
           echo "jars=$jar_array" >> $GITHUB_OUTPUT
 
   upload-release-assets:
