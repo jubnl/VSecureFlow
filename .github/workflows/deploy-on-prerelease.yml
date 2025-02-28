@@ -2,7 +2,7 @@ name: Deploy on Release
 
 on:
   release:
-    types: [published]
+    types: [prereleased]
 
 permissions:
   contents: write
