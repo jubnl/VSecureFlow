@@ -10,6 +10,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Expose JAR paths to subsequent jobs
+    outputs:
+      jars: ${{ steps.collect_jars.outputs.jars }}
 
     env:
       MVN_CENTRAL_USR: ${{ secrets.MVN_CENTRAL_USR }}
@@ -40,7 +43,7 @@ jobs:
               mvn versions:set -DnewVersion="${CURRENT_VERSION}-SNAPSHOT"
             fi
           else
-            # For a full release, remove "-SNAPSHOT" if present
+            # For a release, remove "-SNAPSHOT" if present
             CLEAN_VERSION="${CURRENT_VERSION/-SNAPSHOT/}"
             mvn versions:set -DnewVersion="$CLEAN_VERSION"
           fi
@@ -61,19 +64,30 @@ jobs:
       - name: Build and Deploy with Maven
         run: mvn -s ./settings.xml deploy
 
-      - name: Find the built JAR
-        id: find_jar
+      - name: Collect JARs
+        id: collect_jars
         run: |
-          JAR_PATH=$(ls target/*.jar | head -n 1)
-          echo "jar-path=$JAR_PATH" >> $GITHUB_OUTPUT
-          echo "jar-name=$(basename $JAR_PATH)" >> $GITHUB_OUTPUT
+          # Turn all target/*.jar paths into a JSON array for the matrix
+          jar_array=$(ls target/*.jar | jq -R . | jq -s .)
+          echo "jars=$jar_array" >> $GITHUB_OUTPUT
 
-      - name: Upload artifact to the Release
+  upload-release-assets:
+    needs: deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jar: ${{ fromJSON(needs.deploy.outputs.jars) }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Upload each JAR
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.find_jar.outputs.jar-path }}
-          asset_name: ${{ steps.find_jar.outputs.jar-name }}
+          asset_path: ${{ matrix.jar }}
+          asset_name: ${{ matrix.jar }}
           asset_content_type: application/octet-stream
