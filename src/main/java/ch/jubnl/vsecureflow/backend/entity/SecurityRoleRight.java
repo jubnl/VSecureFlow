@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.envers.Audited;
 
 import java.io.Serializable;
 
@@ -15,6 +16,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString(callSuper = true)
+@Audited
 public class SecurityRoleRight extends BaseEntity implements Serializable, Cloneable {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)

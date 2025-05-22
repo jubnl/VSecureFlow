@@ -6,6 +6,7 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.envers.Audited;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Getter
 @Entity
 @ToString(callSuper = true)
+@Audited
 public class SecurityUser extends BaseEntity implements Serializable, Cloneable {
     @Column(nullable = false, unique = true)
     private String username;
