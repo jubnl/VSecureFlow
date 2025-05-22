@@ -1,9 +1,7 @@
 package ch.jubnl.vsecureflow.backend.service;
 
-import ch.jubnl.vsecureflow.backend.dto.AuditDto;
 import ch.jubnl.vsecureflow.backend.dto.BaseDto;
 import ch.jubnl.vsecureflow.backend.entity.BaseEntity;
-import ch.jubnl.vsecureflow.backend.helper.SpringContextHolder;
 import ch.jubnl.vsecureflow.backend.mapper.BaseMapper;
 import ch.jubnl.vsecureflow.backend.repository.BaseRepository;
 import org.slf4j.Logger;
@@ -72,17 +70,5 @@ public abstract class BaseService<Entity extends BaseEntity, Dto extends BaseDto
         if (repository.existsById(id)) {
             repository.deleteById(id);
         }
-    }
-
-    public List<AuditDto> audit(Entity entity) {
-        return getAuditService().auditRecord(entity);
-    }
-
-    public List<AuditDto> audit(Dto dto) {
-        return audit(mapper.toEntity(dto));
-    }
-
-    protected AuditService getAuditService() {
-        return SpringContextHolder.getBean(AuditService.class);
     }
 }

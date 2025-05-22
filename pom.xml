@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
+		<version>3.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ch.jubnl</groupId>
 	<artifactId>vsecureflow</artifactId>
-	<version>0.0.15-SNAPSHOT</version>
+	<version>0.0.16-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>VSecureFlow</name>
 	<description>A Vaadin based framework made security first in mind</description>
@@ -36,8 +36,9 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<vaadin.version>24.6.5</vaadin.version>
+		<vaadin.version>24.7.5</vaadin.version>
 		<org.mapstruct.version>1.6.3</org.mapstruct.version>
+		<org.hibernate-envers.version>7.0.0.Final</org.hibernate-envers.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -89,6 +90,12 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>
 			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-envers -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<version>${org.hibernate-envers.version}</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
